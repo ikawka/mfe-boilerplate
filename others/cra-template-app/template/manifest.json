@@ -1,0 +1,8 @@
+{
+  "name": "APP_NAME",
+  "devPort": 3000,
+  "entryPoint": "remoteEntry.js",
+  "exposes": {
+    "./App": "./src/bootstrap"
+  }
+}
