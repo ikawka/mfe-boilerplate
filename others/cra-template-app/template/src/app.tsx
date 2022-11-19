@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Switch, Route, Router } from 'react-router-dom';
+import { Routes, Route, Router } from 'react-router-dom';
 import {
   ColorScheme,
   ColorSchemeProvider,
@@ -25,10 +25,10 @@ const App = ({
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
 
   const MainRouter = () => (
-    <Router history={history}>
-      <Switch>
-        <Route path="/" component={Landing} />
-      </Switch>
+    <Router location={history.location} navigator={history}>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+      </Routes>
     </Router>
   );
 
