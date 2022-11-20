@@ -1,0 +1,8 @@
+{
+  "name": "container",
+  "devPort": 3000,
+  "entryPoint": "remoteEntry.js",
+  "apps": {
+    "marketing": 3001
+  }
+}

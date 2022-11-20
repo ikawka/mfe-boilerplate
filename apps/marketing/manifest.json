@@ -1,0 +1,8 @@
+{
+  "name": "marketing",
+  "devPort": 3001,
+  "entryPoint": "remoteEntry.js",
+  "exposes": {
+    "./App": "./src/bootstrap"
+  }
+}
