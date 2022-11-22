@@ -3,7 +3,7 @@ name: deploy-blog
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - 'apps/blog/**'
 

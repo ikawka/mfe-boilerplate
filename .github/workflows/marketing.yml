@@ -3,7 +3,7 @@ name: deploy-marketing
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - 'apps/marketing/**'
 
