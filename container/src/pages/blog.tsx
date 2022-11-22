@@ -2,7 +2,7 @@ import { mount } from 'blog/App';
 import { useRef, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
-export default ({ colorScheme }: any) => {
+const Blog = ({ colorScheme }: any) => {
   const ref = useRef(null);
   const history = useHistory();
 
@@ -24,3 +24,5 @@ export default ({ colorScheme }: any) => {
 
   return <div ref={ref} />;
 };
+
+export default Blog;
