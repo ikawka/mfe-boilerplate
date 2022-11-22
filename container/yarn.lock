@@ -6303,9 +6303,9 @@ mkdirp@~0.5.1:
   dependencies:
     minimist "^1.2.6"
 
-"module-federation-cra@git+ssh://git@github.com/ikawka/module-federation-cra.git":
+"module-federation-cra@git+https://github.com/ikawka/module-federation-cra.git":
   version "1.0.0"
-  resolved "git+ssh://git@github.com/ikawka/module-federation-cra.git#ccc3a47718f26250179bf622c027f307f0db9b9c"
+  resolved "git+https://github.com/ikawka/module-federation-cra.git#ccc3a47718f26250179bf622c027f307f0db9b9c"
   dependencies:
     "@craco/craco" "^6.4.5"
     webpack "^5.64.4"

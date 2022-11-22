@@ -10,7 +10,7 @@
     "@types/node": "^18.11.9",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
-    "module-federation-cra": "git+ssh://git@github.com/ikawka/module-federation-cra.git",
+    "module-federation-cra": "git+https://github.com/ikawka/module-federation-cra.git",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.2.0",
