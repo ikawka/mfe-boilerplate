@@ -10,7 +10,7 @@ module.exports = {
   }, {}),
   filename: entryPoint,
   shared: {
-    ...zdeps,
+    ...deps,
     react: {
       singleton: true,
       requiredVersion: deps['react'],

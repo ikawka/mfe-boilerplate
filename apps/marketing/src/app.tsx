@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Routes, Route, Router } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Switch, Route, Router } from 'react-router-dom';
 import {
   ColorScheme,
   ColorSchemeProvider,
@@ -7,6 +7,8 @@ import {
   Container,
 } from '@mantine/core';
 import Landing from './pages/landing';
+import About from './pages/about';
+import Pricing from './pages/pricing';
 
 interface Props {
   history: any;
@@ -25,10 +27,12 @@ const App = ({
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
 
   const MainRouter = () => (
-    <Router location={history.location} navigator={history}>
-      <Routes>
-        <Route path="/" element={<Landing />} />
-      </Routes>
+    <Router history={history}>
+      <Switch>
+        <Route path="/about" component={About} />
+        <Route path="/pricing" component={Pricing} />
+        <Route path="/" component={Landing} />
+      </Switch>
     </Router>
   );
 

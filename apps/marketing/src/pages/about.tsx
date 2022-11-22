@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 interface Props {}
 
-const Landing = ({}: Props) => {
+const About = ({}: Props) => {
   return (
     <>
-      <div>Hello Galaxy Marketing</div>
+      <div>Hello Galaxy About</div>
       <div>
         <Link to="/">Home</Link> | <Link to="/about">Features</Link> |{' '}
         <Link to="/pricing">Pricing</Link>
@@ -15,4 +15,4 @@ const Landing = ({}: Props) => {
   );
 };
 
-export default Landing;
+export default About;

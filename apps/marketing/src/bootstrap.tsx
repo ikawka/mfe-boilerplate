@@ -1,4 +1,4 @@
-import { createRoot, Root } from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import { ColorScheme } from '@mantine/core';
 import { createMemoryHistory, createBrowserHistory } from 'history';
 import App from './app';
@@ -12,7 +12,7 @@ interface MountOptions {
 }
 
 const mount = (
-  root: Root,
+  el: HTMLElement,
   {
     onNavigate,
     defaultHistory,
@@ -31,14 +31,14 @@ const mount = (
     history.listen(onNavigate);
   }
 
-  root.render(
+  ReactDOM.render(
     <App history={history} colorScheme={colorScheme} isIsolated={isIsolated} />,
+    el,
   );
 
   return {
     onParentNavigate({ pathname: nextPathname }: any) {
       const { pathname } = history.location;
-
       if (pathname !== nextPathname) {
         history.push(nextPathname);
       }
@@ -47,10 +47,10 @@ const mount = (
 };
 
 if (process.env.NODE_ENV === 'development') {
-  const devRoot = createRoot(document.getElementById('root') as HTMLElement);
+  const el = document.getElementById('marketing-root');
 
-  if (devRoot) {
-    mount(devRoot, {
+  if (el) {
+    mount(el, {
       defaultHistory: createBrowserHistory(),
       isIsolated: true,
     });

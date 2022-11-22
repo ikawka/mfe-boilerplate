@@ -1,21 +1,20 @@
-import { useState } from 'react';
-import { Routes, Route, Router } from 'react-router-dom';
+import { lazy, Suspense, useState } from 'react';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import {
   ColorScheme,
   ColorSchemeProvider,
   MantineProvider,
   Container,
 } from '@mantine/core';
-import Landing from './pages/landing';
+import { HeaderSimple } from './components/header';
+const Marketing = lazy(() => import('./components/marketing'));
 
 interface Props {
-  history: any;
   colorScheme: ColorScheme;
   isIsolated?: boolean;
 }
 
 const App = ({
-  history,
   colorScheme: initialColorScheme,
   isIsolated = false,
 }: Props) => {
@@ -23,34 +22,59 @@ const App = ({
     useState<ColorScheme>(initialColorScheme);
   const toggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
-
   const MainRouter = () => (
-    <Router location={history.location} navigator={history}>
-      <Routes>
-        <Route path="/" element={<Landing />} />
-      </Routes>
-    </Router>
+    <Suspense fallback={null}>
+      <Switch>
+        <Route path="/" component={Marketing} />
+      </Switch>
+    </Suspense>
   );
 
   return (
-    <ColorSchemeProvider
-      colorScheme={colorScheme}
-      toggleColorScheme={toggleColorScheme}
-    >
-      <MantineProvider
-        theme={{ colorScheme }}
-        withGlobalStyles
-        withNormalizeCSS
+    <BrowserRouter>
+      <ColorSchemeProvider
+        colorScheme={colorScheme}
+        toggleColorScheme={toggleColorScheme}
       >
-        {isIsolated ? (
-          <Container>
+        <MantineProvider
+          theme={{ colorScheme }}
+          withGlobalStyles
+          withNormalizeCSS
+        >
+          {isIsolated ? (
+            <Container>
+              <HeaderSimple
+                links={[
+                  {
+                    link: '/',
+                    label: 'Home',
+                  },
+                  {
+                    link: '/about',
+                    label: 'Features',
+                  },
+                  {
+                    link: '/pricing',
+                    label: 'Pricing',
+                  },
+                  {
+                    link: '/learn',
+                    label: 'Learn',
+                  },
+                  {
+                    link: '/community',
+                    label: 'Community',
+                  },
+                ]}
+              />
+              <MainRouter />
+            </Container>
+          ) : (
             <MainRouter />
-          </Container>
-        ) : (
-          <MainRouter />
-        )}
-      </MantineProvider>
-    </ColorSchemeProvider>
+          )}
+        </MantineProvider>
+      </ColorSchemeProvider>
+    </BrowserRouter>
   );
 };
 
