@@ -66,7 +66,7 @@ const NotFound = () => {
       </Text>
       <Group position="center">
         <Button variant="subtle" size="md">
-          Take me back to home page
+          Back to home page
         </Button>
       </Group>
     </Container>
