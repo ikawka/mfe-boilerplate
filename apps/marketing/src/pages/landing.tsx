@@ -99,6 +99,10 @@ const Landing = ({}: Props) => {
   ];
   return (
     <>
+      <div>
+        <Link to="/">Home</Link> | <Link to="/about">Features</Link> |{' '}
+        <Link to="/pricing">Pricing</Link>
+      </div>
       <Grid>
         {items.map((item, index) => (
           <Grid.Col xs={4} key={index}>
@@ -106,10 +110,6 @@ const Landing = ({}: Props) => {
           </Grid.Col>
         ))}
       </Grid>
-      <div>
-        <Link to="/">Home</Link> | <Link to="/about">Features</Link> |{' '}
-        <Link to="/pricing">Pricing</Link>
-      </div>
     </>
   );
 };

@@ -11,6 +11,7 @@ import {
   IconBrandInstagram,
   IconCactus,
 } from '@tabler/icons';
+import { Link } from 'react-router-dom';
 
 const useStyles = createStyles(theme => ({
   footer: {
@@ -126,15 +127,9 @@ const Footer = ({ data }: FooterLinksProps) => {
 
   const groups = data.map(group => {
     const links = group.links.map((link, index) => (
-      <Text<'a'>
-        key={index}
-        className={classes.link}
-        component="a"
-        href={link.link}
-        onClick={event => event.preventDefault()}
-      >
+      <Link key={index} className={classes.link} to={link.link}>
         {link.label}
-      </Text>
+      </Link>
     ));
 
     return (
