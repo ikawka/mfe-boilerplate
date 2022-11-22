@@ -1,0 +1,8 @@
+{
+  "name": "blog",
+  "devPort": 3002,
+  "entryPoint": "remoteEntry.js",
+  "exposes": {
+    "./App": "./src/bootstrap"
+  }
+}

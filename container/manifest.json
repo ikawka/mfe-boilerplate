@@ -3,6 +3,7 @@
   "devPort": 3000,
   "entryPoint": "remoteEntry.js",
   "apps": {
-    "marketing": 3001
+    "marketing": 3001,
+    "blog": 3002
   }
 }

@@ -7,7 +7,6 @@ import {
   Container,
 } from '@mantine/core';
 import Landing from './pages/landing';
-import Pricing from './pages/pricing';
 
 interface Props {
   history: any;
@@ -28,8 +27,7 @@ const App = ({
   const MainRouter = () => (
     <Router history={history}>
       <Switch>
-        <Route path="/about" component={Landing} />
-        <Route path="/pricing" component={Pricing} />
+        <Route path="/blog" component={Landing} />
       </Switch>
     </Router>
   );

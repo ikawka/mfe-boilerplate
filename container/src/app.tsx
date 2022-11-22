@@ -5,9 +5,15 @@ import {
   ColorSchemeProvider,
   MantineProvider,
   Container,
+  AppShell,
+  Loader,
 } from '@mantine/core';
-import { HeaderSimple } from './components/header';
-const Marketing = lazy(() => import('./components/marketing'));
+import Header from './components/header';
+import Footer from './components/footer';
+import NotFound from './pages/notfound';
+
+const Marketing = lazy(() => import('./pages/marketing'));
+const Blog = lazy(() => import('./pages/blog'));
 
 interface Props {
   colorScheme: ColorScheme;
@@ -22,10 +28,98 @@ const App = ({
     useState<ColorScheme>(initialColorScheme);
   const toggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
+
+  const aboutLinks = [
+    {
+      link: '/',
+      label: 'Home',
+    },
+    {
+      link: '/about',
+      label: 'Features',
+    },
+    {
+      link: '/pricing',
+      label: 'Pricing',
+    },
+    {
+      link: '/learn',
+      label: 'Learn',
+    },
+    {
+      link: '/blog',
+      label: 'Blog',
+    },
+  ];
+  const footer = {
+    data: [
+      {
+        title: 'About',
+        links: aboutLinks,
+      },
+      {
+        title: 'Project',
+        links: [
+          {
+            label: 'Contribute',
+            link: '#',
+          },
+          {
+            label: 'Media assets',
+            link: '#',
+          },
+          {
+            label: 'Changelog',
+            link: '#',
+          },
+          {
+            label: 'Releases',
+            link: '#',
+          },
+        ],
+      },
+      {
+        title: 'Community',
+        links: [
+          {
+            label: 'Join Discord',
+            link: '#',
+          },
+          {
+            label: 'Follow on Twitter',
+            link: '#',
+          },
+          {
+            label: 'Email newsletter',
+            link: '#',
+          },
+          {
+            label: 'GitHub discussions',
+            link: '#',
+          },
+        ],
+      },
+    ],
+  };
+
   const MainRouter = () => (
-    <Suspense fallback={null}>
+    <Suspense
+      fallback={
+        <Container>
+          <Loader />
+        </Container>
+      }
+    >
       <Switch>
-        <Route path="/" component={Marketing} />
+        <Route
+          path={['/about', '/pricing']}
+          component={() => <Marketing colorScheme={colorScheme} />}
+        />
+        <Route
+          path="/blog"
+          component={() => <Blog colorScheme={colorScheme} />}
+        />
+        <Route path="*" component={NotFound} />
       </Switch>
     </Suspense>
   );
@@ -37,41 +131,19 @@ const App = ({
         toggleColorScheme={toggleColorScheme}
       >
         <MantineProvider
-          theme={{ colorScheme }}
+          theme={{ colorScheme, loader: 'bars' }}
           withGlobalStyles
           withNormalizeCSS
         >
+          <Header links={aboutLinks} />
           {isIsolated ? (
-            <Container>
-              <HeaderSimple
-                links={[
-                  {
-                    link: '/',
-                    label: 'Home',
-                  },
-                  {
-                    link: '/about',
-                    label: 'Features',
-                  },
-                  {
-                    link: '/pricing',
-                    label: 'Pricing',
-                  },
-                  {
-                    link: '/learn',
-                    label: 'Learn',
-                  },
-                  {
-                    link: '/community',
-                    label: 'Community',
-                  },
-                ]}
-              />
+            <Container mt={20}>
               <MainRouter />
             </Container>
           ) : (
             <MainRouter />
           )}
+          <Footer {...footer} />
         </MantineProvider>
       </ColorSchemeProvider>
     </BrowserRouter>
