@@ -5,7 +5,6 @@ import {
   ColorSchemeProvider,
   MantineProvider,
   Container,
-  AppShell,
   Loader,
 } from '@mantine/core';
 import Header from './components/header';
