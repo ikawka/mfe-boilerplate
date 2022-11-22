@@ -4,8 +4,9 @@ const { name, apps, entryPoint } = require('./manifest.json');
 module.exports = {
   name,
   remotes: Object.keys(apps).reduce((acc, item) => {
-    const domain = `localhost:${apps[item]}`;
-    acc[item] = `${item}@http://${domain}/remoteEntry.js`;
+    const domain =
+      process.env.PRODUCTION_DOMAIN || `http://localhost:${apps[item]}`;
+    acc[item] = `${item}@${domain}/remoteEntry.js`;
     return acc;
   }, {}),
   filename: entryPoint,
