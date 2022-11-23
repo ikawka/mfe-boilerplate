@@ -10,7 +10,7 @@ const Pricing = ({}: Props) => {
         <Link to="/">Home</Link> | <Link to="/about">Features</Link> |{' '}
         <Link to="/pricing">Pricing</Link>
       </div>
-      <div>Hello Galaxy Pricing</div>
+      <div>Hello Galaxy Pricing!</div>
     </>
   );
 };
