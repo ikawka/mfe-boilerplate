@@ -21,6 +21,7 @@ jobs:
       - run: yarn build
         env:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
+          PUBLIC_URL: '/container/latest/'
 
       - uses: chrislennon/action-aws-cli@v1.1
         env:
